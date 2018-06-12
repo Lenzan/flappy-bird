@@ -12,8 +12,8 @@ public class Trigger : MonoBehaviour{
     public float speed;
 
     void Update() {
-        if (transform.localPosition.x < -300f)
-            transform.localPosition = new Vector2(300, GetY());
+        if (transform.localPosition.x < -600)
+            transform.localPosition = new Vector2(1200, GetY());
         //transform.Translate( - transform.right * speed * Time.deltaTime);
         transform.localPosition += -Vector3.right * speed * Time.deltaTime;
     }

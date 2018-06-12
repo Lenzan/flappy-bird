@@ -81,7 +81,6 @@ public class Score : MonoBehaviour {
         //}
         string path = Application.streamingAssetsPath + "/score.txt";
         int best = GetScore(path);
-        Debug.Log(best);
         if (_Score > best)
         {
             SetScore(path);

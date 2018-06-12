@@ -14,6 +14,7 @@ public class PlayUIPanel : BaseUIPanel {
     private Button runButton;
     private GameObject lead;
     private GameObject getReady;
+    public float speed;
     public override void Awake()
     {
         lead = transform.Find("Lead").gameObject;
@@ -53,8 +54,8 @@ public class PlayUIPanel : BaseUIPanel {
             channel.transform.SetParent(_parent);
             channel.transform.localScale = Vector3.one;
             Trigger trigger = channel.GetComponent<Trigger>();
-            trigger.speed = 90;
-            channel.transform.localPosition = new Vector2(370 + i * step, trigger.GetY());
+            trigger.speed = speed ;
+            channel.transform.localPosition = new Vector2(1500 + i * step, trigger.GetY());
             if (channels.Contains(trigger)) return;
             channels.Add(trigger);
         }
@@ -65,7 +66,7 @@ public class PlayUIPanel : BaseUIPanel {
         if(channels.Count == 0)
             Run();
         else
-            SetScene(90);
+            SetScene(speed);
         runButton.gameObject.SetActive(false);
         BirdController.instance.SetAnimatorSpeed(State.Fly);
         BirdController.instance.vecY = BirdController.instance.fixedSpeed;
@@ -81,7 +82,7 @@ public class PlayUIPanel : BaseUIPanel {
         for (int i = 0; i < 3; i++)
         {
             Trigger trigger = channels[i].GetComponent<Trigger>();
-            channels[i].transform.localPosition = new Vector2(370 + i * step, trigger.GetY());
+            channels[i].transform.localPosition = new Vector2(1500 + i * step, trigger.GetY());
         }
         Score.instance._Score = 0;
         SetScene(0);

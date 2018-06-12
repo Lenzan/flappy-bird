@@ -80,7 +80,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.013824463, y: 4.2874756}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -91,7 +91,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 48, y: 317}
+  m_Size: {x: 207.28894, y: 1286.9137}
   m_EdgeRadius: 0
 --- !u!61 &61513612418764248
 BoxCollider2D:
@@ -105,7 +105,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7.6358128, y: -1.2217522}
+  m_Offset: {x: 17.630432, y: 15.571838}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -116,7 +116,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20.271626, y: 100.01351}
+  m_Size: {x: 112.25867, y: 338.90222}
   m_EdgeRadius: 0
 --- !u!61 &61696611506607304
 BoxCollider2D:
@@ -130,7 +130,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 2.5595703, y: 2.6402588}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -141,7 +141,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 48, y: 317}
+  m_Size: {x: 206.33533, y: 1353.9417}
   m_EdgeRadius: 0
 --- !u!114 &114230446612254736
 MonoBehaviour:
@@ -291,8 +291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 210.2}
-  m_SizeDelta: {x: 52, y: 320}
+  m_AnchoredPosition: {x: -0.0000076294, y: 862}
+  m_SizeDelta: {x: 209, y: 1354.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224166506114453480
 RectTransform:
@@ -311,7 +311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 370, y: -300}
+  m_AnchoredPosition: {x: 370, y: -220}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224922816766773060
@@ -329,6 +329,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076293945, y: -211}
-  m_SizeDelta: {x: 52, y: 320}
+  m_AnchoredPosition: {x: -0.000022888, y: -800}
+  m_SizeDelta: {x: 209, y: 1285.8}
   m_Pivot: {x: 0.5, y: 0.5}
