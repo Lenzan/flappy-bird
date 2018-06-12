@@ -308,8 +308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vecY: 0
-  speed: 10
-  fixedSpeed: 5
+  speed: 20
+  fixedSpeed: 10
   currentState: 0
 --- !u!50 &283379184
 Rigidbody2D:

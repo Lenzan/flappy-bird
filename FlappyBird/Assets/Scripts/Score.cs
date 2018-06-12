@@ -40,13 +40,13 @@ public class Score : MonoBehaviour {
         instantiateScore();
         scores[0].GetComponent<Image>().sprite = numbers[0];
         UpdateScore();
-        PlayerPrefs.SetFloat("best" , 0);
     }
 	
     void instantiateScore()
     {
         GameObject score = Instantiate(Resources.Load<GameObject>("Score"));
         score.transform.parent = transform;
+        score.transform.localScale = Vector3.one;
         scores.Add(score);
     }
 
