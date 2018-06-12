@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class PlayUIPanel : BaseUIPanel {
     public int step;
     public List<Trigger> channels = new List<Trigger>();
-    public List<Ground> grounds = new List<Ground>();
+    public GroundPanel grounds;
     public Transform _parent;
     private Button runButton;
     private GameObject lead;
@@ -70,6 +70,7 @@ public class PlayUIPanel : BaseUIPanel {
         runButton.gameObject.SetActive(false);
         BirdController.instance.SetAnimatorSpeed(State.Fly);
         BirdController.instance.vecY = BirdController.instance.fixedSpeed;
+        BirdController.instance.speed = 20;
         lead.gameObject.SetActive(false);
         getReady.gameObject.SetActive(false);
     }
@@ -98,10 +99,7 @@ public class PlayUIPanel : BaseUIPanel {
         {
             trigger.speed = speed;
         }
-        foreach (Ground ground in grounds)
-        {
-            ground.speed = speed;
-        }
+        grounds.speed = speed;
         runButton.gameObject.SetActive(true);
     }
 

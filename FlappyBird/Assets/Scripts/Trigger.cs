@@ -14,8 +14,8 @@ public class Trigger : MonoBehaviour{
     void Update() {
         if (transform.localPosition.x < -600)
             transform.localPosition = new Vector2(1200, GetY());
-        //transform.Translate( - transform.right * speed * Time.deltaTime);
-        transform.localPosition += -Vector3.right * speed * Time.deltaTime;
+        transform.Translate( - transform.right * speed * Time.deltaTime);
+        //transform.localPosition += -Vector3.right * speed * Time.deltaTime;
     }
     //碰撞检测
     private void OnTriggerExit2D(Collider2D collider) {

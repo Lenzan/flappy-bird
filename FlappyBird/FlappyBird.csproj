@@ -318,6 +318,7 @@
     <Compile Include="Assets\Scripts\BirdController.cs" />
     <Compile Include="Assets\Scripts\Channel.cs" />
     <Compile Include="Assets\Scripts\Ground.cs" />
+    <Compile Include="Assets\Scripts\GroundPanel.cs" />
     <Compile Include="Assets\Scripts\OverUIPanel.cs" />
     <Compile Include="Assets\Scripts\PlayUIPanel.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
