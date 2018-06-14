@@ -1,6 +1,6 @@
 # flappy-bird
 小游戏  
-！[image](https://github.com/Lenzan/flappy-bird/blob/master/Image/flappybird.gif)
+![image](https://github.com/Lenzan/flappy-bird/blob/master/Image/flappybird.gif)
 ![image](https://github.com/Lenzan/flappy-bird/blob/master/Image/1.png)
 ![image](https://github.com/Lenzan/flappy-bird/blob/master/Image/2.png)
 ![image](https://github.com/Lenzan/flappy-bird/blob/master/Image/3.png)
