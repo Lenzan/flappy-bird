@@ -30,7 +30,7 @@ public class Trigger : MonoBehaviour{
     /// <returns></returns>
     public float GetY()
     {
-        return UnityEngine.Random.Range(-70 , 70);
+        return UnityEngine.Random.Range(-200 , 200);
     }
     
 
