@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,11 +21,24 @@ public class Score : MonoBehaviour {
         }
     }
 
+    public int BestScore
+    {
+        get
+        {
+            return bestScore;
+        }
+
+        set
+        {
+            bestScore = value;
+        }
+    }
+
     void Start () {
         instance = this;
         Init();
         string path = Application.streamingAssetsPath + "/score.txt";
-        SetScore(path);
+        bestScore = GetScore(path);
     }
 
     public void Init()
@@ -66,7 +78,6 @@ public class Score : MonoBehaviour {
             int index = int.Parse(num[i].ToString());
             scores[i].GetComponent<Image>().sprite = numbers[index];
         }
-        SaveBestScore();
     }
 
     /// <summary>
@@ -74,18 +85,11 @@ public class Score : MonoBehaviour {
     /// </summary>
     public void SaveBestScore()
     {
-        //float best = PlayerPrefs.GetFloat("best");
-        //if (_Score > best)
-        //{
-        //    PlayerPrefs.SetFloat("best" , _Score);
-        //}
         string path = Application.streamingAssetsPath + "/score.txt";
-        int best = GetScore(path);
-        if (_Score > best)
+        if (_Score > bestScore)
         {
             SetScore(path);
         }
-
     }
 
     public int GetScore(string path)
@@ -104,9 +108,9 @@ public class Score : MonoBehaviour {
     {
         var file = new FileInfo(path);
         StreamWriter sw;
-        sw = File.CreateText(path);//打开现有 UTF-8 编码文本文件以进行读取  
-        sw.WriteLine(_Score.ToString());//以行为单位写入字符串  
+        sw = File.CreateText(path);
+        sw.WriteLine(_Score.ToString());
         sw.Close();
-        //sw.Dispose();//文件流释放  
+        sw.Dispose();//文件流释放  
     }
 }

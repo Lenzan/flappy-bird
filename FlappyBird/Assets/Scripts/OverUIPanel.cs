@@ -17,27 +17,34 @@ public class OverUIPanel : BaseUIPanel{
         restartButton = transform.Find("ReStart/ReStartButton").GetComponent<Button>();
         medalImage = transform.Find("MedalPanel/Medal").GetComponent<Image>();
         restartButton.onClick.AddListener(RestartButtonClick);
-      
     }
 
-    public override void OnEnter() {
+    void OnEnable()
+    {
         score.text = Score.instance._Score.ToString();
-        bestScore.text = Score.instance.GetScore(Application.streamingAssetsPath + "/score.txt").ToString();
+        bestScore.text = Score.instance.BestScore.ToString();
         SetIcon();
+    }
+    /// <summary>
+    /// ÃÌº”œ‘ æ∂Øª≠
+    /// </summary>
+    public override void OnEnter() {
+       
     }
 
     public override void OnExit() {
         gameObject.SetActive(false);
-
+        medalImage.sprite = null;
     }
 
     public void SetIcon()
     {
         int index = 1;
         int scores = Score.instance._Score;
-        if (scores < 10) index = 1;
-        else if (scores < 30) index = 2;
-        else index = 3;
+        if (scores < 10 && scores > 5) index = 1;
+        else if (scores < 30 && scores >= 10) index = 2;
+        else if(scores >= 30)
+            index = 3;
         Sprite icon = Resources.Load<Sprite>("medals_" + index);
         medalImage.sprite = icon;
     }

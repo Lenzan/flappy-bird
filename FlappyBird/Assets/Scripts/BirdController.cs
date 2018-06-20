@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -11,76 +12,69 @@ public class BirdController: MonoBehaviour
     public float speed;
     public float fixedSpeed;
 
-    private Vector3 localPos;
-    //private Vector2 perPos;
-    //private float offset;
-    //private Vector3 targetRotation;
-    //public Vector3 target;
-    //public float step;
-    //public float height;
-    //public float rotate;
-    //public float rotateTime;
+    public  Vector3 localPos;
+    public Vector3 localRotateTarget;
+    private float smooth = 0.5f;
 
     //当前的状态
     public State currentState;
     private Animator animator;
+    public bool isDie = false;
     private void Start() {
         instance = this;
         currentState = State.Idle;
         animator = GetComponent<Animator>();
         localPos = transform.localPosition;
-        //perPos = transform.localPosition;
     }
 
     public void InitPos()
     {
         transform.localPosition = localPos;
-        speed = 10;
+        transform.localEulerAngles = Vector3.zero;
     }
+
     /// <summary>
     ///  更新小鸟的动画状态
     /// </summary>
     private void Update() {
-        if (currentState == State.Idle) return;
-        if (Input.GetMouseButtonDown(0) && currentState != State.Die)
+        #region 乱七八糟
+        if (currentState == State.Idle || isDie )
         {
-            AudioManager.instance.AudioShotPlay("sfx_swooshing");
-            vecY = fixedSpeed;
+            return;
         }
-        vecY -= Time.deltaTime * speed;
-        transform.position += new Vector3(0, vecY, 0);
-        #region Lerp
-        //offset = transform.position.magnitude - perPos.magnitude;
-        //perPos = transform.position;
-        //if (offset > 0.15f)
-        //{
-        //    step = 1f;
-        //}
-        //if (offset < 0.15f)
-        //{
-        //    target = new Vector3(0, -182, 0);
-        //    targetRotation = new Vector3(0, 0, -90);
-        //    step = 0.2f;
-        //    rotateTime = 1.5f;
-        //}
-        //if (Input.GetMouseButtonDown(0)&& currentState != State.Die)
-        //{
-        //    AudioManager.instance.AudioShotPlay("sfx_swooshing");
-        //    if (transform.position.y > 520)
-        //    {
-        //        target = new Vector3(0f, 520, 0);
-        //    }
-        //    else
-        //    {
-        //        target = transform.localPosition + new Vector3(0, height, 0);
-        //    }
-        //    targetRotation = new Vector3(0, 0, rotate);
-        //}
-        //transform.DORotate(targetRotation, rotateTime);
-        //transform.localPosition = Vector3.Lerp(transform.localPosition, target, step * Time.deltaTime * 10);
+        if (currentState == State.Fly && isDie == false)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                AudioManager.instance.AudioShotPlay("sfx_swooshing");
+                localRotateTarget = new Vector3(0, 0, 40);
+                vecY = fixedSpeed;
+                smooth = 0.3f;
+            }
+            if (vecY < 0)
+            {
+                localRotateTarget = new Vector3(0, 0, 0);
+            }
+            vecY -= Time.deltaTime * speed;
+            transform.position += new Vector3(0, vecY, 0);
+            transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, localRotateTarget, smooth);
+        }
+        else if (currentState == State.Die && isDie == false)
+        {
+            isDie = true;
+            smooth = 0.5f;
+            transform.DOLocalMoveY(-580, smooth);
+            transform.DOLocalRotate(new Vector3(0, 0, -90), smooth);
+            StartCoroutine(Play());
+        }
         #endregion
     }
 
+    IEnumerator Play()
+    {
+        yield return new WaitForSeconds(0.3f);
+        AudioManager.instance.AudioShotPlay("sfx_die");
+    }
     /// <summary>
     /// 设置小鸟动画的播放速度
     /// </summary>

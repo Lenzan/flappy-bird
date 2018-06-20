@@ -25,13 +25,14 @@ public class PlayUIPanel : BaseUIPanel {
 
     public override void OnEnter()
     {
-        if(channels.Count == 0 ) return;
-        BirdController.instance.SetAnimatorSpeed(State.Idle);
+        runButton.interactable = true;
+        if (channels.Count == 0 ) return;
         ResetPlayUIPanel();
     }
 
     public override void OnExit() {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        runButton.interactable = false;
     }
 
     /// <summary>
@@ -39,9 +40,12 @@ public class PlayUIPanel : BaseUIPanel {
     /// </summary>
     public void Die()
     {
+        Score.instance.SaveBestScore();
         SetScene(0);
         UIManager.instance.Show(UIPanel.OverUI);
-        Score.instance.SaveBestScore();
+        BirdController.instance.GetComponent<CircleCollider2D>().enabled = false;
+        BirdController.instance.SetAnimatorSpeed(State.Die);
+        AudioManager.instance.AudioShotPlay("sfx_hit");
     }
 
     void Run()
@@ -60,7 +64,7 @@ public class PlayUIPanel : BaseUIPanel {
             channels.Add(trigger);
         }
     }
-
+     
     public void RunButtonClick()
     {
         if(channels.Count == 0)
@@ -73,6 +77,9 @@ public class PlayUIPanel : BaseUIPanel {
         BirdController.instance.speed = 20;
         lead.gameObject.SetActive(false);
         getReady.gameObject.SetActive(false);
+        BirdController.instance.GetComponent<CircleCollider2D>().enabled = true;
+        BirdController.instance.isDie = false;
+        BirdController.instance.localRotateTarget = new Vector3(0,0,40);
     }
 
     /// <summary>

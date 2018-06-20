@@ -11,17 +11,10 @@ public class Ground : MonoBehaviour{
     private PlayUIPanel playUI;
 
     private void OnTriggerExit2D(Collider2D collider) {
-        BirdController.instance.vecY = 0;
-        BirdController.instance.speed = 0;
         if (BirdController.instance.currentState != State.Die)
         {
             playUI = UIManager.instance.uiBase[UIPanel.PlayUI] as PlayUIPanel;
             playUI.Die();
-            BirdController.instance.SetAnimatorSpeed(State.Die);
-            AudioManager.instance.AudioShotPlay("sfx_hit");
         }
     }
-
-    
-
 }
