@@ -14,7 +14,7 @@ public class BirdController: MonoBehaviour
 
     public  Vector3 localPos;
     public Vector3 localRotateTarget;
-    private float smooth = 0.5f;
+    public float smooth = 0.5f;
 
     //当前的状态
     public State currentState;
@@ -44,7 +44,7 @@ public class BirdController: MonoBehaviour
         }
         if (currentState == State.Fly && isDie == false)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && transform.localPosition.y < 800f)
             {
                 AudioManager.instance.AudioShotPlay("sfx_swooshing");
                 localRotateTarget = new Vector3(0, 0, 40);
@@ -56,13 +56,16 @@ public class BirdController: MonoBehaviour
                 localRotateTarget = new Vector3(0, 0, 0);
             }
             vecY -= Time.deltaTime * speed;
+            if (transform.localEulerAngles.y < -580f)
+            {
+                vecY = 0;
+            }
             transform.position += new Vector3(0, vecY, 0);
             transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, localRotateTarget, smooth);
         }
         else if (currentState == State.Die && isDie == false)
         {
             isDie = true;
-            smooth = 0.5f;
             transform.DOLocalMoveY(-580, smooth);
             transform.DOLocalRotate(new Vector3(0, 0, -90), smooth);
             StartCoroutine(Play());

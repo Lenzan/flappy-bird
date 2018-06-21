@@ -20,6 +20,7 @@ public class Channel : MonoBehaviour{
     private void OnTriggerEnter2D(Collider2D collider) {
         // TODO implement here
         if (BirdController.instance.currentState == State.Die) return;
+        BirdController.instance.smooth = 0.5f;
         playUI.Die();
     }
 

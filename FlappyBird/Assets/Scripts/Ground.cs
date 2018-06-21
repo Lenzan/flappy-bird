@@ -14,6 +14,7 @@ public class Ground : MonoBehaviour{
         if (BirdController.instance.currentState != State.Die)
         {
             playUI = UIManager.instance.uiBase[UIPanel.PlayUI] as PlayUIPanel;
+            BirdController.instance.smooth = 0;
             playUI.Die();
         }
     }
