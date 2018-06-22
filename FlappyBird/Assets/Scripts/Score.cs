@@ -70,7 +70,7 @@ public class Score : MonoBehaviour {
     /// </summary>
     public void UpdateScore()
     {
-        int length = _Score.ToString().Length;
+        var length = _Score.ToString().Length;
         if (scores.Count < length)
         {
             instantiateScore();

@@ -32,7 +32,6 @@ public class PlayUIPanel : BaseUIPanel {
     public override void OnEnter()
     {
         gameObject.SetActive(true);
-        //Ëæ»úÐ¡Äñ
         RandomBird();
         runButton.interactable = true;
         manager.enabled = true;

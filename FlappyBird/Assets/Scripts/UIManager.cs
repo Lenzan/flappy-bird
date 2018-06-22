@@ -33,7 +33,10 @@ public class UIManager  : MonoBehaviour {
     {
         Show(UIPanel.StartUI);
     }
-    ///显示UI
+    /// <summary>
+    /// 显示UI
+    /// </summary>
+    /// <param name="uiPanel"></param>
     public void Show(UIPanel uiPanel) {
         if(currentShow != null) currentShow.OnExit();
         currentShow = uiBase[uiPanel];

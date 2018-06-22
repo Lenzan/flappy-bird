@@ -16,7 +16,6 @@ public class BirdController: MonoBehaviour
     public Vector3 localRotateTarget;
     public float smooth = 0.5f;
 
-    //当前的状态
     public State currentState;
     private Animator animator;
     public bool isDie = false;

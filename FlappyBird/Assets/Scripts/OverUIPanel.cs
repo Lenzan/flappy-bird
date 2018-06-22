@@ -56,8 +56,8 @@ public class OverUIPanel : BaseUIPanel{
 
     public void SetIcon()
     {
-        int index = 1;
-        int scores = Score.instance._Score;
+        var index = 1;
+        var scores = Score.instance._Score;
         if (scores < 10 ) return;
         else if (scores > 10 && scores < 20) index = 1;
         else if (scores < 30 && scores >= 20) index = 2;
@@ -87,9 +87,9 @@ public class OverUIPanel : BaseUIPanel{
         int length = score.ToString().Length;
         char[] num = score.ToString().ToCharArray();
 
-        for (int i = 0; i < num.Length; i++)
+        foreach (char t in num)
         {
-            int index = int.Parse(num[i].ToString());
+            int index = int.Parse(t.ToString());
             GameObject go = Instantiate(Resources.Load<GameObject>("overScore"));
             go.transform.SetParent(parent);
             go.transform.localScale *= 0.9f;

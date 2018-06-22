@@ -12,7 +12,6 @@ public class StartUIPanel : BaseUIPanel{
    
     public override void Awake() {
         base.Awake();
-        PlayerPrefs.SetInt("score" , 0);
         startButton = transform.Find("Start").GetComponent<Button>();
         startButton.onClick.AddListener(delegate() {
             UIManager.instance.Show(UIPanel.PlayUI);
