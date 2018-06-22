@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,25 +18,31 @@ public class OverUIPanel : BaseUIPanel{
     private List<GameObject> currentScores= new List<GameObject>();
     private List<GameObject> bestScores = new List<GameObject>();
     private Sprite defaultSprite;
+    private GameObject newScore;
     public override void Awake()
     {
+        base.Awake();
         restartButton = transform.Find("ReStart/ReStartButton").GetComponent<Button>();
         medalImage = transform.Find("MedalPanel/Medal").GetComponent<Image>();
         restartButton.onClick.AddListener(RestartButtonClick);
         defaultSprite = medalImage.sprite;
+        newScore = transform.Find("MedalPanel/New").gameObject;
+        newScore.SetActive(false);
     }
 
     void OnEnable()
     {
         SetScores(Score.instance._Score, currentScores , score);
         SetScores(Score.instance.BestScore, currentScores, bestScore);
+   
         SetIcon();
     }
     /// <summary>
     /// ÃÌº”œ‘ æ∂Øª≠
     /// </summary>
     public override void OnEnter() {
-       
+        Score.instance.DestroyScore();
+        newScore.gameObject.SetActive(Score.instance.isBest);
     }
 
     public override void OnExit() {
@@ -44,6 +51,7 @@ public class OverUIPanel : BaseUIPanel{
         RestList(currentScores);
         RestList(bestScores);
         medalImage.sprite = defaultSprite;
+        newScore.SetActive(false);
     }
 
     public void SetIcon()
@@ -84,9 +92,20 @@ public class OverUIPanel : BaseUIPanel{
             int index = int.Parse(num[i].ToString());
             GameObject go = Instantiate(Resources.Load<GameObject>("overScore"));
             go.transform.SetParent(parent);
-            //go.transform.localScale *= 0.7f;
+            go.transform.localScale *= 0.9f;
             go.GetComponent<Image>().sprite = Score.instance.numbers[index];
             list.Add(go);
         }
+    }
+
+    public override void DoScreen()
+    {
+        gameObject.SetActive(true);
+        screen.DOColor(new Color(1, 1, 1, 0.5f), 0.2f).OnComplete(() =>
+        {
+            OnEnter();
+            screen.DOColor(new Color(1, 1, 1, 0), 0f);
+
+        });
     }
 }

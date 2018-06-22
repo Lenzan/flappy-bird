@@ -42,17 +42,21 @@ public class Score : MonoBehaviour {
 
     public void Init()
     {
+        DestroyScore();
+        instantiateScore();
+        scores[0].GetComponent<Image>().sprite = numbers[0];
+        UpdateScore();
+    }
+
+    public void DestroyScore()
+    {
         for (int i = 0; i < scores.Count; i++)
         {
             if (scores[i] != null)
                 Destroy(scores[i]);
         }
         scores.Clear();
-        instantiateScore();
-        scores[0].GetComponent<Image>().sprite = numbers[0];
-        UpdateScore();
     }
-	
     void instantiateScore()
     {
         GameObject score = Instantiate(Resources.Load<GameObject>("Score"));
@@ -87,8 +91,15 @@ public class Score : MonoBehaviour {
         if (_Score > bestScore)
         {
             bestScore = _Score;
-            PlayerPrefs.SetInt("score" , bestScore);
+            PlayerPrefs.SetInt("score", bestScore);
+            isBest = true;
+        }
+        else
+        {
+            isBest = false;
         }
     }
+
+    public bool isBest = false;
 
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 /**
  * UI面板的基类
@@ -9,9 +11,11 @@ using UnityEngine;
  */
 public class BaseUIPanel : MonoBehaviour
 {
+    public Image screen;
     //初始化
     public virtual void Awake() {
         // TODO implement here
+        screen = UIManager.instance.screen;
     }
     //面板进入
     public virtual void OnEnter() {
@@ -21,5 +25,13 @@ public class BaseUIPanel : MonoBehaviour
     //面板退出
     public virtual void OnExit() {
         // TODO implement here
+    }
+
+    public virtual void DoScreen(){
+        screen.DOColor(Color.black, 0.5f).OnComplete(() =>
+        {
+            OnEnter();
+            screen.DOColor(new Color(0, 0, 0, 0), 2);
+        });
     }
 }

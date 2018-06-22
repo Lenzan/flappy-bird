@@ -31,6 +31,7 @@ public class BirdController: MonoBehaviour
     {
         transform.localPosition = localPos;
         transform.localEulerAngles = Vector3.zero;
+        SetAnimatorSpeed(State.Idle);
     }
 
     /// <summary>
@@ -87,7 +88,7 @@ public class BirdController: MonoBehaviour
         switch (state)
         {
             case State.Idle:
-                animator.speed = 1;
+                animator.speed = 0.8f;
             break;
             case State.Fly:
                 animator.speed = 1.5f;
