@@ -37,8 +37,7 @@ public class Score : MonoBehaviour {
     void Start () {
         instance = this;
         Init();
-        string path = Application.streamingAssetsPath + "/score.txt";
-        bestScore = GetScore(path);
+        bestScore = PlayerPrefs.GetInt("score");
     }
 
     public void Init()
@@ -85,32 +84,11 @@ public class Score : MonoBehaviour {
     /// </summary>
     public void SaveBestScore()
     {
-        string path = Application.streamingAssetsPath + "/score.txt";
         if (_Score > bestScore)
         {
-            SetScore(path);
+            bestScore = _Score;
+            PlayerPrefs.SetInt("score" , bestScore);
         }
     }
 
-    public int GetScore(string path)
-    {
-        var file = new FileInfo(path);
-        //if (!file.Exists) return 0;
-        StreamReader sr;
-        var score = "";
-        sr = file.OpenText();
-        score = sr.ReadToEnd();
-        sr.Close();
-        return int.Parse(score);
-    }
-
-    void SetScore(string path)
-    {
-        var file = new FileInfo(path);
-        StreamWriter sw;
-        sw = File.CreateText(path);
-        sw.WriteLine(_Score.ToString());
-        sw.Close();
-        sw.Dispose();//文件流释放  
-    }
 }

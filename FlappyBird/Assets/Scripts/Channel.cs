@@ -18,7 +18,7 @@ public class Channel : MonoBehaviour{
     ///  碰撞检测
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collider) {
-        // TODO implement here
+  
         if (BirdController.instance.currentState == State.Die) return;
         BirdController.instance.smooth = 0.5f;
         playUI.Die();
